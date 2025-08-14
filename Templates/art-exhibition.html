@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Art Exhibition Gallery</title>
+  <link rel="stylesheet" href="{% static 'css/allevent.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto+Slab&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <h1>Art Exhibition Gallery</h1>
+  <div class="tagline">Celebrating the soul of creativity — one brushstroke at a time.</div>
+
+  <div class="gallery">
+    <a href="{% url 'a1' %}" tabindex="0">
+      <img src="{% static 'images/IMG-20250521-WA0037.jpg' %}" alt="Modern Abstraction" />
+      <div class="art-title">Modern Abstraction</div>
+    </a>
+
+    <a href="{% url 'a2' %}" tabindex="0">
+      <img src="{% static 'images/IMG-20250521-WA0038.jpg' %}" alt="Watercolor Dreams" />
+      <div class="art-title">Watercolor Dreams</div>
+    </a>
+
+    <a href="{% url 'a3' %}" tabindex="0">
+      <img src="{% static 'images/IMG-20250521-WA0040.jpg' %}" alt="Impressionist Touch" />
+      <div class="art-title">Impressionist Touch</div>
+    </a>
+
+    <a href="{% url 'a4' %}" tabindex="0">
+      <img src="{% static 'images/IMG-20250521-WA0042.jpg' %}" alt="Portraits of Soul" />
+      <div class="art-title">Portraits of Soul</div>
+    </a>
+
+    <a href="{% url 'a5' %}" tabindex="0">
+      <img src="{% static 'images/IMG-20250521-WA0044.jpg' %}" alt="Canvas of Chaos" />
+      <div class="art-title">Canvas of Chaos</div>
+    </a>
+
+    <a href="{% url 'a6' %}" tabindex="0">
+      <img src="{% static 'images/IMG-20250521-WA0050.jpg' %}" alt="Nature in Frame" />
+      <div class="art-title">Nature in Frame</div>
+    </a>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox"></div>
+
+  <script>
+    // Lightbox image preview
+    const lightbox = document.getElementById('lightbox');
+    document.querySelectorAll('.gallery a img').forEach(img => {
+      img.addEventListener('click', e => {
+        e.preventDefault();
+        lightbox.innerHTML = `<img src="${img.src.replace('w=400', 'w=900')}" alt="${img.alt}">`;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+        lightbox.innerHTML = '';
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Keyboard navigation focus glow
+    document.querySelectorAll('.gallery a').forEach(link => {
+      link.addEventListener('focus', () => link.classList.add('focus-glow'));
+      link.addEventListener('blur', () => link.classList.remove('focus-glow'));
+    });
+  </script>
+
+</body>
+</html>

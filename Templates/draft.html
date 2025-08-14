@@ -1,0 +1,274 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Events Gallery</title>
+  <link rel="stylesheet" href="{% static 'css/gallery.css' %}" />
+  <script src="{% static 'js/gallery.js' %}"></script>
+</head>
+<body>
+  <div class="container">
+    <h2 class="section-title">Trending Events in India</h2>
+    <div class="events-container">
+      {% if events %}
+      {% for event in events %}
+      <div class="event-card">
+        <img src="{{ event.image.url }}" alt="{{ event.name }}">
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <img src="/lef2/static/images/danceparty" alt="Event Image" />
+        <div class="event-info">
+          <h3>Kukdukoo Fest Bengaluru</h3>
+          <p>DPS North</p>
+          <p>05–06 Apr</p>
+          <p class="price">₹599</p>
+        </div>
+      </div>
+
+
+      <!-- Add more cards here if needed -->
+    </div>
+  </div>
+</body>
+</html>
+ <div class="event-card" onclick="openModal('Beach Cleanup', '2025-06-11', '5:00 PM', 'Kammanahalli', 'A beach cleanup is an event where volunteers gather to collect and dispose of trash and debris that has accumulated on a beach, aiming to protect marine life, preserve the natural beauty of the coastline, and promote environmental awareness. Participants work together to remove litter, recyclables, and other waste, often learning about the impact of pollution on ecosystems and the importance of conservation. Beach cleanups not only beautify shorelines but also contribute to a healthier environment for wildlife and humans alike. Learn more about environmental initiatives and conservation efforts at Around You.', 'images/music-nights.jpeg')">
+        <img src="{% static 'images/beachcleanup.jpg' %}" alt="Music Fiesta" class="event-img">
+        <h3>Music Fiesta</h3>
+      </div>
+
+      <div class="event-card" onclick="openModal('Art Expo', '2025-05-12', '10:00 AM', 'Whitefield', 'Immerse yourself in a world of creativity at our stunning art exhibition, featured on Local Event Finder (Around You)! Discover captivating works by talented local and international artists, showcasing a diverse range of styles and mediums. Join us for an unforgettable experience, and donot miss the artist talks, workshops, and live demonstrations.', 'images/art-exhibition.jpg')">
+        <img src="{% static 'images/art-exhibition.jpg' %}" alt="Art Expo" class="event-img">
+        <h3>Art Expo</h3>
+      </div>
+
+      <div class="event-card" onclick="openModal('Food Carnival', '2025-05-14', '12:00 PM', 'Indiranagar', 'Get ready for a taste adventure at our epic food carnival, featured on Local Event Finder (Around You)! Indulge in a world of flavors with diverse cuisines, from savory street food to sweet treats. Savor the aromas and flavors of local and international dishes, and discover new favorites. Join us for a fun-filled day of food, friends, and festivities!', 'images/event.jpeg')">
+        <img src="{% static 'images/Punjabi-Food-Festival.jpeg' %}" alt="Food Carnival" class="event-img">
+        <h3>Food Carnival</h3>
+      </div>
+      <div class="event-card" onclick="openModal('Startup Pitch Fest', '2025-05-15', '2:00 PM', 'Electronic City', 'Join the innovation revolution at our Startup Pitch Fest, featured on Local Event Finder (Around You)! Witness the next big thing as emerging startups showcase their groundbreaking ideas, products, and services. Listen to pitches from ambitious entrepreneurs, network with investors and industry experts, and discover the future of tech, innovation, and beyond. Donot miss the opportunity to be inspired, learn, and connect with the startup ecosystem.', 'images/event4.jpg')">
+        <img src="{% static 'images/starup.jpg' %}" alt="Startup Pitch" style="width:100%; border-radius:10px;">
+        <h3>Startup Pitch Fest</h3>
+    </div>
+    <div class="event-card" onclick="openModal('Comedy Night', '2025-05-17', '8:00 PM', 'Koramangala', 'Laughter is the best medicine! Join us for a hilarious Comedy Night, featured on Local Event Finder (Around You)! Enjoy an evening of stand-up comedy, witty one-liners, and side-splitting performances by talented comedians. Relax, unwind, and have a blast with friends and fellow comedy lovers. Get ready to LOL and create unforgettable memories! ', 'images/event5.jpg')">
+        <img src="{% static 'images/standup.jpeg' %}" alt="Comedy Night" style="width:100%; border-radius:10px;">
+        <h3>Comedy Night</h3>
+    </div>
+    <div class="event-card" onclick="openModal('Book Fair', '2025-05-18', '11:00 AM', 'Majestic', 'Get lost in the pages! Join us at our Book Fair, featured on Local Event Finder (Around You)! Discover new titles, meet bestselling authors, and explore a vast collection of books across genres. From fiction to non-fiction, classics to contemporary bestsellers. A must-visit for book lovers of all ages! ', 'images/event6.jpg')">
+        <img src="{% static 'images/book-club-meetup.jpg' %}" alt="Book Fair" style="width:100%; border-radius:10px;">
+        <h3>Book Fair</h3>
+    </div>
+    <div class="event-card" onclick="openModal('Tech Summit', '2025-05-20', '9:00 AM', 'HSR Layout', 'Upgrade your knowledge! Join us at our Tech Summit, featured on Local Event Finder (Around You)! Dive into the latest trends, innovations, and insights in the world of technology. Hear from industry leaders, innovators, and experts as they share their experiences and vision for the future. Stay ahead of the curve and discover the technologies shaping our world!', 'images/event7.jpg')">
+        <img src="{% static 'images/tech fair.jpeg' %}" alt="Tech Summit" style="width:100%; border-radius:10px;">
+        <h3>Tech Summit</h3>
+    </div>
+    <div class="event-card" onclick="openModal('Dance Blast', '2025-05-22', '7:00 PM', 'JP Nagar', 'Get ready to groove! Join our Dance Blast, featured on Local Event Finder (Around You)! Dance the night away to the hottest tracks, with DJs, performers, and dance crews taking the stage.  From hip-hop to electronic, pop to Bollywood, the beats are pumping and the energy is electric!.', 'images/event8.jpg')">
+        <img src="{% static 'images/dance.jpg' %}" alt="Dance Blast" style="width:100%; border-radius:10px;">
+        <h3>Dance Blast</h3>
+    </div>
+    <div class="event-card" onclick="openModal('Career Expo', '2025-05-24', '10:00 AM', 'Banashankari', 'Unlock your future! Join our Career Expo, featured on Local Event Finder (Around You)! Connect with top employers, industry experts, and career advisors. Explore job opportunities, learn about career paths, and gain insights into your desired field. Network with professionals, attend workshops, and discover your potential. Take the first step towards your dream career!', 'images/event9.jpg')">
+        <img src="{% static 'images/career.jpg' %}" alt="Career Expo" style="width:100%; border-radius:10px;">
+        <h3>Career Expo</h3>
+    </div>
+    <div class="event-card" onclick="openModal('Gaming Arena', '2025-05-26', '4:00 PM', 'Hebbal', 'Level up your gaming experience! Join our Gaming Arena, featured on Local Event Finder (Around You)! Compete in thrilling tournaments, play on high-performance gaming rigs, and show off your skills. From e-sports to casual gaming, our arena is the ultimate destination for gamers. Challenge friends, meet fellow players, and win prizes. Get ready to game like never before!', 'images/event10.jpg')">
+        <img src="{% static 'images/gamenight.jpg' %}" alt="Gaming Arena" style="width:100%; border-radius:10px;">
+        <h3>Gaming Arena</h3>
+    </div>

@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Book an Event</title>
+  <link rel="stylesheet" href="{% static 'css/booking.css' %}" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+       background: linear-gradient(135deg, #ff00cc, #3333ff);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .booking-container {
+      background: #fff;
+      border-radius: 12px;
+      padding: 30px;
+      width: 600px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.849);
+      text-align: center;
+    }
+    h2, h3 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .vehicle-icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+    .seat-selector {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .seat-selector button {
+      background: #eee;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .seat-selector button.active {
+    background: linear-gradient(135deg, #ff00cc, #3333ff);
+      color: white;
+    }
+    .packages {
+      display: flex;
+      justify-content: space-between;
+      margin: 25px 0;
+      font-size: 14px;
+    }
+    .packages div {
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 10px;
+      width: 30%;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+    .packages div.active {
+      border:  #33ff92;
+
+      background: linear-gradient(135deg, #ff00cc, #3333ff);
+
+    }
+    .packages .title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .proceed-btn {
+      margin-top: 20px;
+    background: linear-gradient(135deg, #ff00cc, #3333ff);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="booking-container">
+  <h2>How Many Seats?</h2>
+  <div class="vehicle-icon" id="vehicleIcon">🛵</div>
+  <div class="seat-selector" id="seatButtons"></div>
+
+  <h3>Select Package</h3>
+  <div class="packages" id="packageOptions">
+    <div class="package" data-package="LOUNGER" data-price="2070">
+      <h4>LOUNGER</h4>
+      ₹<span class="price-display">850</span><br>
+      <span class="status">Available</span>
+    </div>
+    <div class="package" data-package="PRIME" data-price="210">
+      <h4>PRIME</h4>
+      ₹<span class="price-display">210</span><br>
+      <span class="status">Available</span>
+    </div>
+    <div class="package" data-package="CLASSIC" data-price="190">
+      <h4>CLASSIC</h4>
+      ₹<span class="price-display">190</span><br>
+      <span class="status">Available</span>
+    </div>
+  </div>
+
+<form method="POST" id="bookingForm">
+    {% csrf_token %}
+    <input type="hidden" name="seats" id="formSeats" />
+    <input type="hidden" name="package" id="formPackage" />
+    <input type="hidden" name="price_per_seat" id="formPrice" />
+    <button type="submit" class="proceed-btn">Proceed</button>
+  </form>
+</div>
+
+<script>
+  const seatButtonsDiv = document.getElementById('seatButtons');
+  const vehicleIcon = document.getElementById('vehicleIcon');
+  const packageDivs = document.querySelectorAll('#packageOptions div');
+  const bookingForm = document.getElementById('bookingForm');
+
+  let selectedSeat = null;
+  let selectedPackage = null;
+  let pricePerSeat = 0;
+  let seatCount = 0;
+
+  // Generate seat buttons
+  for (let i = 1; i <= 10; i++) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.textContent = i;
+    btn.addEventListener('click', () => selectSeat(i, btn));
+    seatButtonsDiv.appendChild(btn);
+  }
+
+  function selectSeat(num, btn) {
+    selectedSeat = num;
+    seatCount = num;
+    document.querySelectorAll('.seat-selector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    vehicleIcon.textContent =
+      num <= 2 ? '🛵' :
+      num === 3 ? '🛺' :
+      num <= 5 ? '🚗' : '🚐';
+
+    updatePackagePrices();
+  }
+
+  function updatePackagePrices() {
+    packageDivs.forEach(pkg => {
+      const basePrice = parseInt(pkg.dataset.price);
+      const total = basePrice * seatCount;
+      pkg.querySelector('.price-display').textContent = total;
+    });
+  }
+
+  packageDivs.forEach(pkg => {
+    pkg.addEventListener('click', () => {
+      if (!selectedSeat) {
+        alert("Please select number of seats first!");
+        return;
+      }
+
+      packageDivs.forEach(p => p.classList.remove('active'));
+      pkg.classList.add('active');
+
+      selectedPackage = pkg.dataset.package;
+      pricePerSeat = parseInt(pkg.dataset.price);
+    });
+  });
+
+  bookingForm.addEventListener('submit', function(e) {
+    if (!selectedSeat || !selectedPackage) {
+      e.preventDefault();
+      alert('Please select number of seats and a package!');
+      return;
+    }
+
+    document.getElementById('formSeats').value = selectedSeat;
+    document.getElementById('formPackage').value = selectedPackage;
+    document.getElementById('formPrice').value = pricePerSeat;
+  });
+</script>
+
+</body>
+</html>

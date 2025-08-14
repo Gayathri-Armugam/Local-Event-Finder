@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Retro Arcade Night - Gaming Detail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+</head>
+<body>
+
+  <h1>Retro Arcade Night</h1>
+
+  <img src="{% static 'images/IMG-20250521-WA0074.jpg' %}" alt="Retro Arcade Night Main" class="main-image" id="mainImage" />
+
+  <div class="thumbnail-row">
+    <img src="{% static 'images/IMG-20250521-WA0075.jpg' %}" alt="Retro Arcade Night 1" class="active" />
+    <img src="{% static 'images/IMG-20250521-WA0076.jpg' %}" alt="Retro Arcade Night 2" />
+    <img src="{% static 'images/IMG-20250521-WA0077.jpg' %}" alt="Retro Arcade Night 3" />
+  </div>
+
+  <div class="description">
+    <p>
+      Retro Arcade Night takes you on a nostalgic journey back to the golden age of gaming. Play classic titles from the 80s and 90s on original arcade machines and vintage consoles.
+    </p>
+    <p>
+      From pixelated adventures to side-scrolling brawlers, this event is perfect for gamers who love the charm of old-school games. Grab your tokens and relive the glory of retro gaming with friends!
+    </p>
+  </div>
+
+  {% if event %}
+    <a href="{% url 'book' event.id %}" class="book-now" tabindex="0">Book Now</a>
+  {% else %}
+    <p class="text-danger">Event not available for booking.</p>
+  {% endif %}
+
+ 
+  <script>
+    const mainImage = document.getElementById('mainImage');
+    const thumbnails = document.querySelectorAll('.thumbnail-row img');
+
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        thumbnails.forEach(img => img.classList.remove('active'));
+        thumb.classList.add('active');
+        mainImage.src = thumb.src.replace('w=400', 'w=900');
+        mainImage.alt = thumb.alt + ' Main Image';
+        mainImage.classList.remove('visible');
+        setTimeout(() => {
+          mainImage.classList.add('visible');
+        }, 50);
+      });
+    });
+
+    const playBtn = document.getElementById('playPlaylistBtn');
+    const audio = document.getElementById('playlistAudio');
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playBtn.textContent = '⏸️ Pause Retro Playlist';
+      } else {
+        audio.pause();
+        playBtn.textContent = '🕹️ Play Retro Playlist';
+      }
+    });
+
+    const video = document.querySelector('.video-section video');
+    video.addEventListener('pause', () => {
+      console.log('Video paused');
+    });
+    video.addEventListener('play', () => {
+      console.log('Video playing');
+    });
+  </script>
+
+</body>
+</html>

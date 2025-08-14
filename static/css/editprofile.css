@@ -1,0 +1,86 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #00e880, #6200ff);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+}
+
+.edit-profile-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px 40px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.edit-profile-container h1 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #fff;
+}
+
+.edit-form .form-group {
+    margin-bottom: 20px;
+}
+
+.edit-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.edit-form input[type="text"],
+.edit-form input[type="email"],
+.edit-form input[type="file"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+.edit-form input::placeholder {
+    color: #ddd;
+}
+
+.edit-form input[type="file"] {
+    background: rgba(255, 255, 255, 0.05);
+    color: #eee;
+}
+
+.save-btn {
+    width: 100%;
+    padding: 12px;
+    background: #00c9a7;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.save-btn:hover {
+    background: #00b189;
+}
+
+.back-btn {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #ddd;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.back-btn:hover {
+    text-decoration: underline;
+}

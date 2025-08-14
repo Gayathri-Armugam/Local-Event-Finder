@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Food Fests Gallery</title>
+  <link rel="stylesheet" href="{% static 'css/allevent.css' %}">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto+Slab&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<h1>Food Fests Gallery</h1>
+<div class="tagline">Savor the flavors — one bite, one fest, one memory.</div>
+
+<div class="gallery">
+  <a href="{% url 'f1' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0047.jpg' %}" alt="Street Food Fiesta" />
+    <div class="food-title">Street Food Fiesta</div>
+  </a>
+
+  <a href="{% url 'f2' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0055.jpg' %}" alt="Gourmet Gala" />
+    <div class="food-title">Gourmet Gala</div>
+  </a>
+
+  <a href="{% url 'f3' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0049.jpg' %}"alt="Dessert Carnival" />
+    <div class="food-title">Dessert Carnival</div>
+  </a>
+
+  <a href="{% url 'f4' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0060.jpg' %}"alt="Vegan Paradise" />
+    <div class="food-title">Vegan Paradise</div>
+  </a>
+
+  <a href="{% url 'f5' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0082.jpg' %}" alt="BBQ Bonanza" />
+    <div class="food-title">BBQ Bonanza</div>
+  </a>
+
+  <a href="{% url 'f6' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0079.jpg' %}" alt="Cheese Lovers Fest" />
+    <div class="food-title">Cheese Lovers Fest</div>
+  </a>
+
+  <a href="{% url 'f7' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0056.jpg' %}" alt="Wine & Dine Expo" />
+    <div class="food-title">Wine & Dine Expo</div>
+  </a>
+
+  <a href="{% url 'f8' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0082.jpg' %}" alt="Spice Route Fest" />
+    <div class="food-title">Spice Route Fest</div>
+  </a>
+
+  <a href="{% url 'f9' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0048.jpg' %}" alt="Chocolate Extravaganza" />
+    <div class="food-title">Chocolate Extravaganza</div>
+  </a>
+
+  <a href="{% url 'f10' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0054.jpg' %}" alt="Seafood Splash" />
+    <div class="food-title">Seafood Splash</div>
+  </a>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox"></div>
+
+<script>
+  // Lightbox functionality
+  const lightbox = document.getElementById('lightbox');
+  document.querySelectorAll('.gallery a img').forEach(img => {
+    img.addEventListener('click', e => {
+      e.preventDefault();
+      lightbox.innerHTML = `<img src="${img.src.replace('w=400','w=900')}" alt="${img.alt}">`;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) {
+      lightbox.classList.remove('active');
+      lightbox.innerHTML = '';
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Keyboard focus glow effect
+  document.querySelectorAll('.gallery a').forEach(link => {
+    link.addEventListener('focus', () => link.classList.add('focus-glow'));
+    link.addEventListener('blur', () => link.classList.remove('focus-glow'));
+  });
+</script>
+
+</body>
+</html>

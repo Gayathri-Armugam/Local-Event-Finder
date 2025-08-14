@@ -1,0 +1,299 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Upcoming Events</title>
+    <style>
+      /* Navbar container with sparkling and glitter effect */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(45deg, #ff00ff, #ff4500, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
+    background-size: 400% 400%;
+    animation: glowingBackground 8s infinite linear;
+    padding: 1rem 2rem;
+    color: #fff;
+    position: fixed; /* Fixed position to keep navbar visible while scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 50px;
+    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.8); /* Glowing effect */
+    border-bottom: 3px solid rgba(255, 215, 0, 0.8);
+}
+
+
+@keyframes glowingBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Glitter effect overlay */
+.navbar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://i.gifer.com/7efs.gif'); /* Sparkling glitter effect */
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Logo and title styling */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    color: rgb(187, 19, 19);
+    height: 50px;
+}
+
+.logo-img {
+    width: 190px;
+    height: 170px;
+    margin-right: 50px;
+}
+
+.navbar-logo h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Navigation links */
+.navbar-links {
+    display: flex;
+    padding: 20px 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 40px;
+    text-shadow: 0px 0px 5px rgb(10, 10, 10), 0px 0px 10px #080708; /* Glow effect */
+}
+
+.navbar-links a:hover {
+    color: yellow;
+    text-shadow: 0px 0px 10px #ffff00, 0px 0px 20px #ff4500; /* Neon glow effect */
+    transform: scale(1.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    .navbar-links {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .navbar-links a {
+        margin: 10px 0;
+    }
+}
+/* Push the content down if navbar is fixed */
+.alert-container {
+    margin-top: 80px; /* Adjust if navbar is taller */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.alert-message {
+    padding: 12px 20px;
+    background-color: #d4edda; /* green bg for success */
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 90px;
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .event-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .event-content {
+            padding: 15px;
+        }
+
+        .event-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #444;
+        }
+
+        .event-details {
+            font-size: 0.95rem;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        .no-events {
+            text-align: center;
+            color: #888;
+            font-style: italic;
+            margin-top: 50px;
+        }
+
+        /* Buttons styling */
+        .book-now-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #2ecc71; /* Default green for Book Now */
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .book-now-btn:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+        }
+
+        /* Edit Button Override */
+        .book-now-btn.edit {
+            background-color: #3498db;
+        }
+
+        .book-now-btn.edit:hover {
+            background-color: #2980b9;
+        }
+
+        /* Delete Button Override */
+        .book-now-btn.delete {
+            background-color: #e74c3c;
+        }
+
+        .book-now-btn.delete:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+   <!-- Header and Navbar -->
+    <header class="navbar">
+        <div class="navbar-logo">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo-img">
+            <h1>Local Event Finder</h1>
+        </div>
+        <nav class="navbar-links">
+            <a href="{% url 'index' %}" class="nav-link active">Home</a>
+            <a href="{% url 'about' %}" class="nav-link">About Us</a>
+             <a href="{% url 'upcoming_events' %}" class="nav-link">Upcoming Events</a>
+            <a href="{% url 'gallery' %}" class="nav-link">Gallery</a>
+            {% if user.is_authenticated and user.role == 'organizer' %}
+            <a href="{% url 'createevent' %}" class="nav-link">Create Event</a>
+        {% endif %}
+                    <a href="{% url 'profile' %}" class="nav-link">Profile</a>
+        </nav>
+    </header>
+   {% if messages %}
+        <div style="max-width: 800px; margin: 0 auto 20px; text-align: center;">
+            {% for message in messages %}
+                <div style="padding: 10px 20px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 8px; margin-bottom: 10px;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <h2>Upcoming Events</h2>
+
+    {% if upcoming_events %}
+        <div class="event-grid">
+            {% for event in upcoming_events %}
+                <div class="event-card">
+                    {% if event.image %}
+                        <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-image" />
+                    {% endif %}
+                    <div class="event-content">
+                        <div class="event-title">{{ event.title }}</div>
+                        <div class="event-details">
+                            <p><strong>Date:</strong> {{ event.date }}</p>
+                            <p><strong>Time:</strong> {{ event.start_time }} to {{ event.end_time }}</p>
+                            <p><strong>Location:</strong> {{ event.location }}</p>
+                            <p><strong>Packages:</strong> {{ event.packages }}</p>
+                            <p><strong>Slots:</strong> {{ event.slots }}</p>
+                            <p><strong>Description:</strong> {{ event.description }}</p>
+                            <p><strong>Organizer:</strong> {{ event.created_by.username }}</p>
+                        </div>
+
+                        <!-- Conditional Buttons -->
+                        <div style="margin-top: 10px;">
+                          {% if user.is_authenticated %}
+                            {% if user == event.created_by or user.is_superuser %}
+                              <!-- Organizer or Admin buttons -->
+                              <a href="{% url 'editevent' event.id %}" class="book-now-btn edit" style="margin-right: 5px;">Edit</a>
+                              <a href="{% url 'deleteevent' event.id %}" class="book-now-btn delete">Delete</a>
+                            {% elif user.role == "attendee" %}
+                              {% if event.slots > 0 %}
+                                <a href="{% url 'book' event.id %}" class="book-now-btn">Book Now</a>
+                              {% else %}
+                                <p style="color: #d00; font-style: italic;">No slots available</p>
+                              {% endif %}
+                            {% endif %}
+                          {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="no-events">No upcoming events at the moment.</p>
+    {% endif %}
+</body>
+</html>

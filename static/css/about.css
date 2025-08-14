@@ -1,0 +1,266 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #00a8e8, #dd00ff);
+    background-size: 400% 400%;
+    animation: backgroundAnimation 10s infinite alternate;
+    color: white;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+@keyframes backgroundAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Navbar container with sparkling and glitter effect */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(45deg, #ff00ff, #ff4500, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
+    background-size: 400% 400%;
+    animation: glowingBackground 8s infinite linear;
+    padding: 1rem 2rem;
+    color: #fff;
+    position: fixed; /* Fixed position to keep navbar visible while scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 50px;
+    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.8); /* Glowing effect */
+    border-bottom: 3px solid rgba(255, 215, 0, 0.8);
+}
+
+/* Add padding to body so content doesn't hide behind navbar */
+body {
+    padding-top: 80px;
+}
+
+@keyframes glowingBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Glitter effect overlay */
+.navbar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://i.gifer.com/7efs.gif'); /* Sparkling glitter effect */
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Logo and title styling */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    color: rgb(187, 19, 19);
+    height: 50px;
+}
+
+.logo-img {
+    width: 190px;
+    height: 170px;
+    margin-right: 50px;
+}
+
+.navbar-logo h1 {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* Navigation links */
+.navbar-links {
+    display: flex;
+    padding: 20px 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 30px;
+    text-shadow: 0px 0px 5px rgb(10, 10, 10), 0px 0px 10px #080708; /* Glow effect */
+}
+
+.navbar-links a:hover {
+    color: yellow;
+    text-shadow: 0px 0px 10px #ffff00, 0px 0px 20px #ff4500; /* Neon glow effect */
+    transform: scale(1.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    .navbar-links {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .navbar-links a {
+        margin: 10px 0;
+    }
+}
+
+/* About Section */
+.about-container {
+    margin-top: 100px;
+    padding: 50px 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.8);
+    max-width: 900px;
+    text-align: left; /* Align text to the left */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Align headings properly */
+.about-container h1,
+.about-container h2,
+.about-container h3 {
+    text-align: center; /* Keep headings centered */
+}
+
+
+/* Align paragraph text */
+.about-container p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #ddd;
+    text-align: justify;
+}
+
+/* Fix list alignment */
+.about-container ul {
+    list-style-type: disc;
+    padding-left: 20px; /* Adds indentation for list */
+}
+
+.about-container ul li {
+    font-size: 1.2rem;
+    color: #ddd;
+    margin-bottom: 10px;
+    text-align: left; /* Ensures list items are aligned to the left */
+}
+.site-footer {
+    background-color: #111822;
+    color: #fff;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-section {
+    flex: 1 1 200px;
+  }
+  
+  .footer-section h4 {
+    margin-bottom: 15px;
+    font-size: 20px;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-section ul li a {
+    color: #ccc;
+    text-decoration: none;
+  }
+  
+  .footer-section ul li a:hover {
+    text-decoration: underline;
+    color: #fff;
+  }
+  
+  .logo-section .footer-logo {
+    width: 200px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+  
+  .badges img {
+    width: 70px;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+  
+  .ad-btn {
+    margin-top: 20px;
+    background-color: white;;
+    color: #1577ed;
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .footer-countries,
+  .footer-trending {
+    text-align: center;
+    margin-top: 40px;
+    padding: 0 20px;
+  }
+  
+  .footer-countries h4,
+  .footer-trending h4 {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .footer-countries p,
+  .footer-trending p {
+    color: #ccc;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .footer-bottom-links {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .footer-bottom-links a {
+    color: #ccc;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+  }
+  
+  .footer-bottom-links a:hover {
+    color: #fff;
+  }
+     

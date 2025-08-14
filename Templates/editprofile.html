@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Profile</title>
+  <link rel="stylesheet" href="{% static 'css/editprofile.css' %}">
+</head>
+<body>
+
+<div class="edit-profile-container">
+  <h1>Edit Profile</h1>
+
+  <!-- Show Django messages -->
+  {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <!-- Edit Profile Form -->
+  <form method="POST" enctype="multipart/form-data" class="edit-form">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="full_name">Full Name</label>
+        <input type="text" name="full_name" id="full_name" value="{{ user.get_full_name }}" 
+               pattern="^[A-Za-z\s]+$" title="Only letters and spaces allowed" required>
+      </div>
+  
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" name="email" id="email" value="{{ user.email }}" required>
+    </div>
+
+    <!-- Phone -->
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="text" name="phone" id="phone" value="{{ user.phone_number }}" 
+             pattern="\d{10}" maxlength="10" title="Enter a valid 10-digit phone number" required>
+    </div>
+
+    <!-- Profile Picture -->
+    <div class="form-group">
+      <label for="profile_picture">Upload New Profile Picture</label>
+      <input type="file" name="profile_picture" accept="image/*">
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="save-btn">Save Changes</button>
+  </form>
+
+  <!-- Back Link -->
+  <a href="{% url 'profile' %}" class="back-btn">← Back to Profile</a>
+</div>
+
+</body>
+</html>

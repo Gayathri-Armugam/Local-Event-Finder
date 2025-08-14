@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BBQ Bonanza - Food Detail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+</head>
+<body>
+
+  <h1>BBQ Bonanza</h1>
+
+  <img src="{% static 'images/IMG-20250521-WA0082.jpg' %}" alt="BBQ Bonanza Main" class="main-image" id="mainImage" />
+
+  <div class="thumbnail-row">
+    <img src="{% static 'images/IMG-20250521-WA0047.jpg' %}" alt="BBQ Bonanza 1" class="active" />
+    <img src="{% static 'images/IMG-20250521-WA0056.jpg' %}" alt="BBQ Bonanza 2" />
+    <img src="{% static 'images/IMG-20250521-WA0083.jpg' %}" alt="BBQ Bonanza 3" />
+  </div>
+
+  <div class="description">
+    <p>
+      BBQ Bonanza is a sizzling event for all meat lovers and grill masters! From slow-cooked ribs to flame-grilled kebabs, this feast features the best of barbeque from around the region.
+      Enjoy smoky flavors, secret sauces, and a wide array of charred delights served fresh off the grill.
+    </p>
+    <p>
+      With live cooking stations, competitive BBQ challenges, and savory samples, BBQ Bonanza guarantees a finger-licking experience.
+      Whether you're a fan of traditional southern styles or adventurous smoky fusions, there's something for everyone to devour.
+    </p>
+  </div>
+
+  {% if event %}
+    <a href="{% url 'book' event.id %}" class="book-now" tabindex="0">Book Now</a>
+  {% else %}
+    <p class="text-danger">Event not available for booking.</p>
+  {% endif %}
+
+  
+  <script>
+    const mainImage = document.getElementById('mainImage');
+    const thumbnails = document.querySelectorAll('.thumbnail-row img');
+
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        thumbnails.forEach(img => img.classList.remove('active'));
+        thumb.classList.add('active');
+        mainImage.src = thumb.src.replace('w=400', 'w=900');
+        mainImage.alt = thumb.alt + ' Main Image';
+        mainImage.classList.remove('visible');
+        setTimeout(() => {
+          mainImage.classList.add('visible');
+        }, 50);
+      });
+    });
+
+    const playBtn = document.getElementById('playPlaylistBtn');
+    const audio = document.getElementById('playlistAudio');
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playBtn.textContent = '⏸️ Pause BBQ Bonanza Playlist';
+      } else {
+        audio.pause();
+        playBtn.textContent = '🎵 Play BBQ Bonanza Playlist';
+      }
+    });
+
+    const video = document.querySelector('.video-section video');
+    video.addEventListener('pause', () => {
+      console.log('Video paused');
+    });
+    video.addEventListener('play', () => {
+      console.log('Video playing');
+    });
+  </script>
+
+</body>
+</html>

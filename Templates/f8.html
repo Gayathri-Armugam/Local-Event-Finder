@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Spice Route Fest - Food Detail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+</head>
+<body>
+
+  <h1>Spice Route Fest</h1>
+
+  <img src="{% static 'images/IMG-20250521-WA0047.jpg' %}" alt="Spice Route Fest Main" class="main-image" id="mainImage" />
+
+  <div class="thumbnail-row">
+    <img src="{% static 'images/IMG-20250521-WA0056.jpg' %}" alt="Spice Route Fest 1" class="active" />
+    <img src="{% static 'images/IMG-20250521-WA0082.jpg' %}" alt="Spice Route Fest 2" />
+    <img src="{% static 'images/IMG-20250521-WA0083.jpg' %}" alt="Spice Route Fest 3" />
+  </div>
+
+  <div class="description">
+    <p>
+      Spice Route Fest is a vibrant celebration of bold flavors, aromatic spices, and culinary traditions from around the world. Dive into a sensory journey that highlights the depth and diversity of spicy cuisines.
+    </p>
+    <p>
+      From fiery street foods to gourmet spice-infused creations, this fest offers cooking demos, tasting stations, and spice markets. Join fellow foodies for a sizzling experience that honors the rich spice heritage.
+    </p>
+  </div>
+
+  {% if event %}
+    <a href="{% url 'book' event.id %}" class="book-now" tabindex="0">Book Now</a>
+  {% else %}
+    <p class="text-danger">Event not available for booking.</p>
+  {% endif %}
+
+  
+
+  <script>
+    const mainImage = document.getElementById('mainImage');
+    const thumbnails = document.querySelectorAll('.thumbnail-row img');
+
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        thumbnails.forEach(img => img.classList.remove('active'));
+        thumb.classList.add('active');
+        mainImage.src = thumb.src.replace('w=400', 'w=900');
+        mainImage.alt = thumb.alt + ' Main Image';
+        mainImage.classList.remove('visible');
+        setTimeout(() => {
+          mainImage.classList.add('visible');
+        }, 50);
+      });
+    });
+
+    const playBtn = document.getElementById('playPlaylistBtn');
+    const audio = document.getElementById('playlistAudio');
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playBtn.textContent = '⏸️ Pause Spice Route Playlist';
+      } else {
+        audio.pause();
+        playBtn.textContent = '🎵 Play Spice Route Playlist';
+      }
+    });
+
+    const video = document.querySelector('.video-section video');
+    video.addEventListener('pause', () => {
+      console.log('Video paused');
+    });
+    video.addEventListener('play', () => {
+      console.log('Video playing');
+    });
+  </script>
+
+</body>
+</html>

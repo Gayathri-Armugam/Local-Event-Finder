@@ -1,0 +1,174 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #00a8e8, #dd00ff);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.form-container {
+    background: rgba(217, 100, 16, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.form-container h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #fff;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.form-group input
+{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    outline: none;
+}
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: rgba(246, 244, 244, 0.915);
+    color: #0c0c0c;
+    outline: none;
+}
+
+/* Placeholder Styling */
+.form-group input::placeholder {
+    color: #ddd;
+}
+
+/* Keep dropdown styling ONLY for select */
+.form-group select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px 16px;
+    cursor: pointer;
+}
+
+.form-group select::-ms-expand {
+    display: none;
+}
+
+/* Focus Effects */
+.form-group input:focus,
+.form-group select:focus {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Button Styling */
+.btn {
+    width: 100%;
+    padding: 10px;
+    background: #2575fc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: #6a11cb;
+}
+
+/* Redirect Links */
+.redirect {
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+.redirect a {
+    color: #6a11cb;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.redirect a:hover {
+    text-decoration: underline;
+}
+
+/* ✅ Forgot Password Style */
+.forgot-password {
+    display: block;
+    text-align: right;
+    font-size: 0.85rem;
+    color: #fff;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    color: #ffff66;
+    text-decoration: underline;
+}
+/* Login Links Container */
+.login-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 0 5px;
+}
+
+.login-link {
+    color: #ddd;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-link:hover {
+    color: #ffff66;
+}
+
+
+.login-link:hover {
+    color: #ffff66;
+}
+
+.left-link {
+    text-align: left;
+}
+
+.right-link {
+    text-align: right;
+}

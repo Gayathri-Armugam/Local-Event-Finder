@@ -1,0 +1,242 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar container */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #1e3c72, #2a5298, #ff5f6d, #ffc371);
+    padding: 1rem 2rem;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 80px;
+}
+
+/* Logo and title styling */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 115, 0, 0.825);
+}
+
+.logo-img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.navbar-logo h1 {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+/* Navigation links */
+.navbar-links {
+    display: flex;
+    padding: 20px 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar-links a {
+    color: rgb(195, 18, 18);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 40px;
+}
+
+.navbar-links a:hover {
+    color: white;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    .navbar-links {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .navbar-links a {
+        margin: 10px 0;
+    }
+}
+
+/* Background gradient with glitter effect */
+body {
+    background: linear-gradient(-45deg, #ff0099, #493240, #00ffcc, #00aaff);
+    background-size: 400% 400%;
+    animation: glitterGradient 10s ease infinite;
+    font-family: Arial, sans-serif;
+    color: #333;
+    position: relative;
+    min-height: 100vh;
+}
+
+@keyframes glitterGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Glitter overlay */
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+/* Header styles */
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 2rem;
+}
+
+.header-1 h1 {
+    font-size: 3em;
+    text-align: center;
+    color: brown;
+    margin-top: 80px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 0px 0px 10px #ff00ff, 0px 0px 20px #ff00ff;
+}
+
+/* Button styling */
+.header-btn {
+    background-color: white;
+    color: #6200ea;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-left: 70px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.header-btn:hover {
+    background-color: #f0f0f0;
+}
+
+/* Search container */
+.search-container {
+    margin-top: 40px;
+    text-align: center;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    margin: 0 5px;
+    width: 70%;
+    max-width: 500px;
+}
+
+/* Floating glitter effect */
+.sparkle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px #fff;
+    animation: glitter 2s infinite ease-in-out;
+}
+
+@keyframes glitter {
+    0% { transform: translateY(0px); opacity: 0.3; }
+    50% { transform: translateY(-20px); opacity: 0.8; }
+    100% { transform: translateY(0px); opacity: 0.3; }
+}
+
+/* Trending section */
+.trending-section {
+    text-align: center;
+    padding: 20px;
+    margin-top: 80px;
+    color: black;
+}
+
+.trending-section h2 {
+    color: brown;
+    font-size: 1.7em;
+}
+
+/* Event container */
+.event-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.event-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 200px;
+    padding: 15px;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}

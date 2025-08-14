@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gourmet Gala - Food Detail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+</head>
+<body>
+
+  <h1>Gourmet Gala</h1>
+
+  <img src="{% static 'images/IMG-20250521-WA0054.jpg' %}" alt="Gourmet Gala Main" class="main-image" id="mainImage" />
+
+  <div class="thumbnail-row">
+    <img src="{% static 'images/IMG-20250521-WA0055.jpg' %}" alt="Gourmet Gala 1" class="active" />
+    <img src="{% static 'images/IMG-20250521-WA0056.jpg' %}" alt="Gourmet Gala 2" />
+    <img src="{% static 'images/IMG-20250521-WA0047.jpg' %}" alt="Gourmet Gala 3" />
+  </div>
+
+  <div class="description">
+    <p>
+      Gourmet Gala is a feast for the senses, showcasing a curated selection of culinary masterpieces from renowned chefs and local food artisans.
+      This event invites you to indulge in a variety of gourmet dishes, from decadent desserts to savory entrées, all crafted with the finest ingredients and culinary flair.
+    </p>
+    <p>
+      With live cooking demonstrations, tasting stations, and a vibrant atmosphere, Gourmet Gala offers food lovers an unforgettable gastronomic experience.
+      Discover bold flavors, creative presentations, and the stories behind every dish that make this event a true celebration of food culture.
+    </p>
+  </div>
+
+  {% if event %}
+    <a href="{% url 'book' event.id %}" class="book-now" tabindex="0">Book Now</a>
+  {% else %}
+    <p class="text-danger">Event not available for booking.</p>
+  {% endif %}
+
+  
+  <script>
+    const mainImage = document.getElementById('mainImage');
+    const thumbnails = document.querySelectorAll('.thumbnail-row img');
+
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        thumbnails.forEach(img => img.classList.remove('active'));
+        thumb.classList.add('active');
+        mainImage.src = thumb.src.replace('w=400', 'w=900');
+        mainImage.alt = thumb.alt + ' Main Image';
+        mainImage.classList.remove('visible');
+        setTimeout(() => {
+          mainImage.classList.add('visible');
+        }, 50);
+      });
+    });
+
+    const playBtn = document.getElementById('playPlaylistBtn');
+    const audio = document.getElementById('playlistAudio');
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playBtn.textContent = '⏸️ Pause Gourmet Gala Vibes';
+      } else {
+        audio.pause();
+        playBtn.textContent = '🎵 Play Gourmet Gala Vibes';
+      }
+    });
+
+    const video = document.querySelector('.video-section video');
+    video.addEventListener('pause', () => {
+      console.log('Video paused');
+    });
+    video.addEventListener('play', () => {
+      console.log('Video playing');
+    });
+  </script>
+
+</body>
+</html>

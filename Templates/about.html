@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Local Event Finder</title>
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+</head>
+<body>
+
+     <!-- Header and Navbar -->
+    <header class="navbar">
+        <div class="navbar-logo">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo-img">
+            <h1>Local Event Finder</h1>
+        </div>
+        <nav class="navbar-links">
+            <a href="{% url 'index' %}" class="nav-link active">Home</a>
+            <a href="{% url 'about' %}" class="nav-link">About Us</a>
+             <a href="{% url 'upcoming_events' %}" class="nav-link">Upcoming Events</a>
+            <a href="{% url 'gallery' %}" class="nav-link">Gallery</a>
+            {% if user.is_authenticated and user.role == 'organizer' %}
+            <a href="{% url 'createevent' %}" class="nav-link">Create Event</a>
+        {% endif %}
+                    <a href="{% url 'profile' %}" class="nav-link">Profile</a>
+        </nav>
+    </header>
+
+    
+    <section class="about-container">
+        <h1>About Local Event Finder</h1>
+        <p>Welcome to Local Event Finder, Local Event Finder is a cutting-edge platform designed to bridge the gap between event organizers and attendees. Whether you're looking for concerts, workshops, networking meetups, or cultural festivals, our website provides an intuitive and seamless way to discover, plan, and engage with events happening in your city. By integrating real-time location services, traffic updates, and weather forecasts, we ensure that users have all the essential information to make informed decisions about their event participation. Our platform is built with both attendees and organizers in mind, allowing event creators to promote their gatherings while helping users find events tailored to their interests.</p>
+        
+        <h3>Our Vision</h3>
+        <p>Our vision is to become the go-to digital hub for event discovery, offering an all-in-one solution for event organizers and attendees worldwide. We aspire to revolutionize how people find and attend events by continuously enhancing our platform with AI-powered recommendations, real-time notifications, and seamless navigation tools. By fostering a culture of engagement and inclusivity, we envision a world where every event—big or small—finds its audience, and every individual has the opportunity to be a part of something exciting.</p>
+
+        <h3>Our Mission</h3>
+        <p>At Local Event Finder, our mission is to connect communities by making events more accessible, interactive, and enjoyable. We aim to remove barriers that prevent people from discovering exciting experiences, ensuring that no event goes unnoticed and every attendee finds something that matches their interests. By leveraging technology, we strive to create an ecosystem where users can explore events effortlessly, engage in meaningful experiences, and build connections within their localities.</p>
+        
+
+        <h2>Why Choose Us?</h2>
+        <ul>
+            <li>Real-time event discovery</li>
+            <li> Profile-Based Event Access </li>
+            <li>Customized User Roles</li>
+            <li>Secure Registration & Login</li>
+             <li>Modern & Simple Interface</li>
+
+        </ul>
+    </section><br><br><br><br><br>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+          <div class="footer-section logo-section">
+            <img src="{% static 'images/1.png' %}" alt="Logo" class="footer-logo">
+            <p>Go-to place to discover events for more than 7M people all around bengaluru.</p>
+            <div class="badges">
+              <img src="{% static 'images/batch1' %}" alt="Leader Badge">
+              <img src="{% static 'images/batch2' %}" alt="Momentum Badge">
+            </div>
+          </div>
+      
+          <div class="footer-section">
+            <h4>Use LEF(Around You)</h4>
+            <ul>
+              <li><a href="#">List Your Event</a></li>
+              <li><a href="#">Promote Your Event</a></li>
+              <li><a href="#">Host Recorded Events</a></li>
+            </ul>
+          </div>
+      
+          <div class="footer-section">
+            <h4>Host Better Events</h4>
+            <ul>
+              <li><a href="#">QR Code Generator</a></li>
+              <li><a href="#">Trackable Link Generator</a></li>
+              <li><a href="#">Rank Your Event</a></li>
+              <li><a href="#">Learn Event Marketing</a></li>
+            </ul>
+          </div>
+      
+          <div class="footer-section">
+            <h4>Discover Events</h4>
+            <ul>
+              <li><a href="#">Events for You</a></li>
+              <li><a href="#">Virtual Events</a></li>
+              <li><a href="#">Get Event Updates</a></li>
+            </ul>
+          </div>
+      
+          <div class="footer-section">
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="#">Event Listing Plugin</a></li>
+              <li><a href="#">Media Kit</a></li>
+              <li><a href="#">Affiliate Program</a></li>
+              <li><a href="#">Support Center</a></li>
+              <li><a href="#">Write for Us</a></li>
+            </ul>
+            <a href="{% url 'gallery' %}" class="ad-btn">Join Us</a>
+          </div>
+        </div>
+      
+        <div class="footer-trending">
+          <h4>Trending In Namma Bengaluru</h4>
+          <p>Best Car Shows In Electronic City 2025 | Best Car Shows In Kammanahalli 2025 | Best Car Shows In Malleshwaram 2025 | Best Festivals In Hulsoor 2025 | Best Of Music Festivals 2025 In KGF </p>
+        </div>
+      
+        <div class="footer-bottom-links">
+          <a href="#">About</a>
+          <a href="#">Careers</a>
+          <a href="#">Support</a>
+          <a href="#">Media Coverage</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy</a>
+          <a href="#">Contact Us</a><br><br><br><br>
+          <p>&copy; 2025 Local Event Finder. All Rights Reserved.</p>
+        </div>
+      </footer>   
+</body>
+</html>

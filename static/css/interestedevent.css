@@ -1,0 +1,192 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff00cc, #3333ff);
+    animation: backgroundAnimation 10s infinite alternate;
+    background-size: 900% ;
+    color: white;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+@keyframes backgroundAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Navbar container with sparkling and glitter effect */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(45deg, #ff00ff, #ff4500, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
+    background-size: 400% 400%;
+    animation: glowingBackground 8s infinite linear;
+    padding: 1rem 2rem;
+    color: #fff;
+    position: fixed; /* Fixed position to keep navbar visible while scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 50px;
+    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.8); /* Glowing effect */
+    border-bottom: 3px solid rgba(255, 215, 0, 0.8);
+}
+
+/* Add padding to body so content doesn't hide behind navbar */
+body {
+    padding-top: 80px;
+}
+
+@keyframes glowingBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Glitter effect overlay */
+.navbar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://i.gifer.com/7efs.gif'); /* Sparkling glitter effect */
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Logo and title styling */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    color: rgb(187, 19, 19);
+    height: 50px;
+}
+
+.logo-img {
+    width: 190px;
+    height: 170px;
+    margin-right: 50px;
+}
+
+.navbar-logo h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Navigation links */
+.navbar-links {
+    display: flex;
+    padding: 20px 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 40px;
+    text-shadow: 0px 0px 5px rgb(10, 10, 10), 0px 0px 10px #080708; /* Glow effect */
+}
+
+.navbar-links a:hover {
+    color: yellow;
+    text-shadow: 0px 0px 10px #ffff00, 0px 0px 20px #ff4500; /* Neon glow effect */
+    transform: scale(1.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    .navbar-links {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .navbar-links a {
+        margin: 10px 0;
+    }
+}
+
+/* Profile Image Styling */
+.profile-section {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.profile-img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-top: 10px;
+}
+
+/* Event Cards */
+.interested-events {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.event-card {
+    background-color: #f9f9f9;
+    width: 250px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.event-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.event-card h3 {
+    padding: 10px;
+    font-size: 1.2rem;
+}
+
+/* Buttons */
+.view-details-btn, .remove-btn {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 15px;
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.remove-btn {
+    background-color: #f44336;
+}
+
+.remove-btn:hover, .view-details-btn:hover {
+    background-color: #45a049;
+}

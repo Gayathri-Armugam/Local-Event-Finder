@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Payment | Local Event Finder</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff00cc, #3333ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.86);
+      width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .summary {
+      background: #f2f2f2;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .payment-options {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .checkbox-group {
+      margin: 15px 0;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #ff00cc, #3333ff);
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Confirm Your Booking</h2>
+
+ <div class="summary">
+  <p><strong>Event:</strong> {{ booking.event.title }}</p>
+  <p><strong>Seats:</strong> {{ booking.seat_count }}</p>
+  <p><strong>Package:</strong> {{ booking.package }}</p>
+  <p><strong>Total:</strong> ₹{{ booking.total_price }}</p>
+</div>
+
+
+<form method="POST">
+    {% csrf_token %}
+
+    <!-- Hidden Fields Passed from View -->
+    <input type="hidden" name="event_id" value="{{ event_id }}">
+    <input type="hidden" name="price_per_seat" value="{{ price_per_seat }}">
+    <input type="hidden" name="seats" value="{{ seats }}">
+    <input type="hidden" name="package" value="{{ package }}">
+    <input type="hidden" name="total_price" value="{{ total_price }}">
+
+    <div class="input-group">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" value="{{ user.get_full_name }}" required />
+    </div>
+
+    <div class="input-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" value="{{ user.email }}" required />
+    </div>
+
+    <div class="input-group">
+      <label for="phone">Mobile Number</label>
+      <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" />
+    </div>
+
+    <label>Payment Method</label>
+    <div class="payment-options">
+      <label><input type="radio" name="payment_method" value="UPI" required> UPI</label>
+      <label><input type="radio" name="payment_method" value="Card"> Card</label>
+      <label><input type="radio" name="payment_method" value="Wallet"> Wallet</label>
+    </div>
+
+    <div class="input-group">
+      <label for="paymentDetail">Payment ID (UPI/Card/Wallet)</label>
+      <input type="text" id="paymentDetail" name="payment_id" required />
+    </div>
+
+    <div class="checkbox-group">
+      <input type="checkbox" id="terms" name="terms" required />
+      <label for="terms"> I agree to the terms & conditions</label>
+    </div>
+
+    <button type="submit">Confirm Booking</button>
+  </form>
+</div>
+
+</body>
+</html>

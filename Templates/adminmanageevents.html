@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Manage Events | Admin Dashboard</title>
+  <link rel="stylesheet" href="{% static 'css/admin.css' %}" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 20px 40px;
+    }
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background: white;
+    }
+    th, td {
+      padding: 14px 20px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #3498db;
+      color: white;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-right: 5px;
+    }
+    .edit-btn {
+      background-color: #2980b9;
+      color: white;
+    }
+    .delete-btn {
+      background-color: #e74c3c;
+      color: white;
+    }
+    /* Modal styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      width: 400px;
+      text-align: center;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .modal textarea {
+      width: 100%;
+      height: 80px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      resize: none;
+    }
+    .modal button {
+      margin-top: 15px;
+      padding: 10px 15px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Manage Upcoming Events</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Event Title</th>
+        <th>Date</th>
+        <th>Organizer</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for event in events %}
+      <tr>
+        <td>{{ event.title }}</td>
+        <td>{{ event.date }}</td>
+        <td>{{ event.organizer.username }}</td>
+        <td>
+          <button class="edit-btn" onclick="openModal('edit', {{ event.id }})">Edit</button>
+          <button class="delete-btn" onclick="openModal('delete', {{ event.id }})">Delete</button>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4" style="text-align:center;">No upcoming events found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Modal for Reason Input -->
+  <div id="reasonModal" class="modal">
+    <div class="modal-content">
+      <h3 id="modalTitle">Provide Reason</h3>
+      <form id="reasonForm" method="POST">
+        {% csrf_token %}
+        <label for="reason">Please provide a reason:</label>
+        <textarea id="reason" name="reason" required></textarea>
+        <input type="hidden" id="eventId" name="event_id">
+        <input type="hidden" id="actionType" name="action_type">
+        <br>
+        <button type="submit">Submit</button>
+        <button type="button" onclick="closeModal()">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openModal(action, eventId) {
+      const modal = document.getElementById('reasonModal');
+      const title = document.getElementById('modalTitle');
+      const form = document.getElementById('reasonForm');
+
+      modal.style.display = 'flex';
+      document.getElementById('eventId').value = eventId;
+      document.getElementById('actionType').value = action;
+
+      if (action === 'edit') {
+        title.innerText = 'Reason for Editing Event';
+        form.action = `{% url 'admin_edit_event' %}`;
+      } else if (action === 'delete') {
+        title.innerText = 'Reason for Deleting Event';
+        form.action = `{% url 'admin_delete_event' %}`;
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('reasonModal').style.display = 'none';
+      document.getElementById('reason').value = '';
+    }
+
+    // Optional: Close modal on outside click
+    window.onclick = function(event) {
+      const modal = document.getElementById('reasonModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
+  </script>
+</body>
+</html>

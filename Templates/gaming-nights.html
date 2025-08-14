@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gaming Night Gallery</title>
+  <link rel="stylesheet" href="{% static 'css/allevent.css' %}">
+</head>
+<body>
+
+<h1>Gaming Night Gallery</h1>
+<div class="tagline">Dive into the action, strategy, and thrill of our epic gaming nights.</div>
+
+<div class="gallery">
+  <a href="{% url 'g1' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0068.jpg' %}" alt="LAN Party Madness" />
+    <div class="game-title">LAN Party Madness</div>
+  </a>
+
+  <a href="{% url 'g2' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0069.jpg' %}" alt="Retro Arcade Night" />
+    <div class="game-title">Retro Arcade Night</div>
+  </a>
+
+  <a href="{% url 'g3' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0070.jpg' %}" alt="FPS Showdown" />
+    <div class="game-title">FPS Showdown</div>
+  </a>
+
+  <a href="{% url 'g4' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0075.jpg' %}" alt="Battle Royale Bash" />
+    <div class="game-title">Battle Royale Bash</div>
+  </a>
+
+  <a href="{% url 'g5' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0077.jpg' %}" alt="Cosplay & Console" />
+    <div class="game-title">Cosplay & Console</div>
+  </a>
+
+  <a href="{% url 'g6' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0076.jpg' %}" alt="E-Sports Tournament" />
+    <div class="game-title">E-Sports Tournament</div>
+  </a>
+</div>
+
+</body>
+</html>

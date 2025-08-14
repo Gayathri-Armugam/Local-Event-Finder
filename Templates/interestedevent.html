@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interested Events</title>
+    <link rel="stylesheet" href="{% static 'css/interestedevent.css' %}">  <!-- Link to your external CSS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/interestedevent.js' %}" defer></script> <!-- Link to your external JS -->
+</head>
+<body>
+ <header class="navbar">
+        <div class="navbar-logo">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo-img">
+            <h1>Local Event Finder</h1>
+        </div>
+        <nav class="navbar-links">
+            <a href="{% url 'index' %}" class="nav-link">Home</a>
+            <a href="{% url 'about' %}" class="nav-link active">About Us</a>
+            <a href="{% url 'gallery' %}" class="nav-link">Gallery</a>
+            {% if user.is_authenticated and user.role == 'organizer' %}
+            <a href="{% url 'createevent' %}" class="nav-link">Create Event</a>
+        {% endif %}
+                    <a href="{% url 'profile' %}" class="nav-link">Profile</a>
+        </nav>
+    </header>
+    <!-- Profile Section -->
+    <div class="profile-section">
+        <img src="{{ user.profile_image.url }}" alt="Profile Image" class="profile-img">
+        <h2>Your Interested Events</h2>
+    </div>
+
+    <!-- Interested Events Section -->
+    <div class="interested-events">
+        {% for event in user.interested_events.all %}
+            <div class="event-card" id="event-{{ event.id }}">
+                <img src="{{ event.image.url }}" alt="{{ event.name }}" class="event-img">
+                <h3>{{ event.name }}</h3>
+                <p>{{ event.short_description }}</p>
+                <button class="view-details-btn" onclick="viewEventDetails('{{ event.id }}')">View Details</button>
+                <button class="remove-btn" onclick="removeFromInterested('{{ event.id }}')">Remove</button>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Modal or Redirected Event Detail Page Placeholder (Optional) -->
+    <div class="event-detail-modal" id="eventDetailModal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="event-detail-container">
+                <!-- Event details will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts (For Dynamic Behavior) -->
+    <script>
+        // View Event Details (Modal or Page Redirect)
+        function viewEventDetails(eventId) {
+            // You can either open a modal or redirect to a details page. 
+            // Example for redirecting to event detail page:
+            window.location.href = `/events/${eventId}/`;  // Redirect to event detail page
+        }
+
+        // Remove Event from Interested Events
+        function removeFromInterested(eventId) {
+            fetch(`/remove-interested/${eventId}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken') // Assuming you are using CSRF tokens
+                },
+                body: JSON.stringify({ event_id: eventId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Remove event card from DOM or refresh the list
+                    document.querySelector(`#event-${eventId}`).remove();
+                } else {
+                    alert('An error occurred while removing the event.');
+                }
+            });
+        }
+
+        // Helper function to get CSRF token (if you're using Django)
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                let cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    let cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        // Close Modal (Optional if using Modal)
+        function closeModal() {
+            document.getElementById("eventDetailModal").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>

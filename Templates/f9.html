@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chocolate Extravaganza - Food Detail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+</head>
+<body>
+
+  <h1>Chocolate Extravaganza</h1>
+
+  <img src="{% static 'images/IMG-20250521-WA0048.jpg' %}" alt="Chocolate Extravaganza Main" class="main-image" id="mainImage" />
+
+  <div class="thumbnail-row">
+    <img src="{% static 'images/IMG-20250521-WA0049.jpg' %}" alt="Chocolate Extravaganza 1" class="active" />
+    <img src="{% static 'images/IMG-20250521-WA0052.jpg' %}" alt="Chocolate Extravaganza 2" />
+    <img src="{% static 'images/IMG-20250521-WA0053.jpg' %}" alt="Chocolate Extravaganza 3" />
+  </div>
+
+  <div class="description">
+    <p>
+      Chocolate Extravaganza is a decadent event dedicated to the love of chocolate in all its delicious forms.
+      From silky-smooth truffles to rich hot cocoa and innovative chocolate-inspired dishes, this fest is a haven for chocolate lovers.
+    </p>
+    <p>
+      Attendees can explore artisanal treats, interactive workshops, chocolate sculptures, and even chocolate tasting flights.
+      Indulge your sweet tooth in a world of cocoa dreams and gourmet delights at Chocolate Extravaganza.
+    </p>
+  </div>
+
+  {% if event %}
+    <a href="{% url 'book' event.id %}" class="book-now" tabindex="0">Book Now</a>
+  {% else %}
+    <p class="text-danger">Event not available for booking.</p>
+  {% endif %}
+
+  
+  <script>
+    const mainImage = document.getElementById('mainImage');
+    const thumbnails = document.querySelectorAll('.thumbnail-row img');
+
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        thumbnails.forEach(img => img.classList.remove('active'));
+        thumb.classList.add('active');
+        mainImage.src = thumb.src.replace('w=400', 'w=900');
+        mainImage.alt = thumb.alt + ' Main Image';
+        mainImage.classList.remove('visible');
+        setTimeout(() => {
+          mainImage.classList.add('visible');
+        }, 50);
+      });
+    });
+
+    const playBtn = document.getElementById('playPlaylistBtn');
+    const audio = document.getElementById('playlistAudio');
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playBtn.textContent = '⏸️ Pause Chocolate Playlist';
+      } else {
+        audio.pause();
+        playBtn.textContent = '🎵 Play Chocolate Playlist';
+      }
+    });
+
+    const video = document.querySelector('.video-section video');
+    video.addEventListener('pause', () => {
+      console.log('Video paused');
+    });
+    video.addEventListener('play', () => {
+      console.log('Video playing');
+    });
+  </script>
+
+</body>
+</html>

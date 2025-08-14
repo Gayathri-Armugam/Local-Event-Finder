@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Watercolor Dreams - Art Exhibition</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+</head>
+<body>
+
+  <h1>Watercolor Dreams</h1>
+  
+  <img src="{% static 'images/IMG-20250521-WA0040.jpg' %}" alt="Watercolor Dreams Main" class="main-image" id="mainImage" />
+  
+  <div class="thumbnail-row">
+    <img src="{% static 'images/IMG-20250521-WA0044.jpg' %}" alt="Watercolor Art 1" class="active" />
+    <img src="{% static 'images/IMG-20250521-WA0045.jpg' %}" alt="Watercolor Art 2" />
+    <img src="{% static 'images/IMG-20250521-WA0046.jpg' %}" alt="Watercolor Art 3" />
+  </div>
+  
+  <div class="description">
+    <p>
+      "Watercolor Dreams" is a serene art exhibition that showcases the fluidity, softness, and magic of watercolor painting.
+      Artists from across the country come together to display landscapes, abstract art, and emotional portraits crafted entirely with watercolor techniques.
+      Whether you're an art lover or an aspiring painter, this exhibition offers a visual journey into the expressive beauty of color and brushwork.
+    </p>
+    <p>
+      Explore dreamlike compositions, interact with artists, and immerse yourself in a world where every stroke tells a story.
+      Join us at Watercolor Dreams to witness how gentle hues and flowing pigment can create powerful emotional experiences on canvas.
+    </p>
+  </div>
+
+{% if event %}
+  <a href="{% url 'book' event.id %}" class="book-now" tabindex="0">Book Now</a>
+{% else %}
+  <p class="text-danger">Event not available for booking.</p>
+{% endif %}
+
+ 
+
+  <script>
+    const mainImage = document.getElementById('mainImage');
+    const thumbnails = document.querySelectorAll('.thumbnail-row img');
+
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        thumbnails.forEach(img => img.classList.remove('active'));
+        thumb.classList.add('active');
+        mainImage.src = thumb.src.replace('w=400', 'w=900');
+        mainImage.alt = thumb.alt + ' Main Image';
+        mainImage.classList.remove('visible');
+        setTimeout(() => {
+          mainImage.classList.add('visible');
+        }, 50);
+      });
+    });
+
+    const playBtn = document.getElementById('playPlaylistBtn');
+    const audio = document.getElementById('playlistAudio');
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playBtn.textContent = '⏸️ Pause Exhibition Audio Tour';
+      } else {
+        audio.pause();
+        playBtn.textContent = '🎨 Play Exhibition Audio Tour';
+      }
+    });
+
+    const video = document.querySelector('.video-section video');
+    video.addEventListener('pause', () => {
+      console.log('Video paused');
+    });
+    video.addEventListener('play', () => {
+      console.log('Video playing');
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Music Concerts Gallery</title>
+  <link rel="stylesheet" href="{% static 'css/allevent.css' %}">
+</head>
+<body>
+
+<h1>Music Concerts Gallery</h1>
+<div class="tagline">Experience the magic of live music, one moment at a time.</div>
+
+<div class="gallery">
+  <a href="{% url 'm1' %}" tabindex="0">
+   <img src="{% static 'images/IMG-20250521-WA0001.jpg' %}" alt="Live Music Performance" />
+
+    <div class="music-title">Jazz Night Concert</div>
+  </a>
+
+  <a href="{% url 'm2' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0002.jpg' %}" alt="Rock Festival" />
+    <div class="music-title">Rock Festival</div>
+  </a>
+
+  <a href="{% url 'm3' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0003.jpg' %}" alt="Classical Orchestra" />
+    <div class="music-title">Classical Orchestra</div>
+  </a>
+
+  <a href="{% url 'm4' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0004.jpg' %}" alt="Pop Concert" />
+    <div class="music-title">Pop Concert</div>
+  </a>
+
+  <a href="{% url 'm5' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0028.jpg' %}" alt="Indie Vibes" />
+    <div class="music-title">Indie Vibes</div>
+  </a>
+
+  <a href="{% url 'm6' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0034.jpg' %}" alt="Electronic Night" />
+    <div class="music-title">Electronic Night</div>
+  </a>
+
+  <a href="{% url 'm7' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0036.jpg' %}"alt="Acoustic Evening" />
+    <div class="music-title">Acoustic Evening</div>
+  </a>
+
+  <a href="{% url 'm8' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0021.jpg' %}" alt="Festival Lights" />
+    <div class="music-title">Festival Lights</div>
+  </a>
+
+  <a href="{% url 'm9' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0024.jpg' %}" alt="Blues Jam" />
+    <div class="music-title">Blues Jam</div>
+  </a>
+
+  <a href="{% url 'm10' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0020.jpg' %}" alt="Symphony Night" />
+    <div class="music-title">Symphony Night</div>
+  </a>
+</div>
+
+</body>
+</html>

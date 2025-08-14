@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Acoustic Evening - Music Detail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+</head>
+<body>
+
+  <h1>Acoustic Evening</h1>
+  
+  <img src="{% static 'images/IMG-20250521-WA0023.jpg' %}"  alt="Acoustic Evening Main" class="main-image" id="mainImage" />
+  
+  <div class="thumbnail-row">
+    <img src="{% static 'images/IMG-20250521-WA0024.jpg' %}"  alt="Acoustic Vibe 1" class="active" />
+    <img src="{% static 'images/IMG-20250521-WA0025.jpg' %}"  alt="Acoustic Vibe 2" />
+    <img src="{% static 'images/IMG-20250521-WA0026.jpg' %}"  alt="Acoustic Vibe 3" />
+  </div>
+  
+  <div class="description">
+    <p>
+      Acoustic Evening offers a soul-soothing experience featuring raw vocals and unplugged performances from top indie and acoustic artists. It's a night of music stripped down to its purest form—gentle strums, poetic lyrics, and calming ambiance.
+    </p>
+    <p>
+      If you seek heartfelt melodies in a cozy atmosphere, Acoustic Evening is your place to unwind, connect with artists, and let the music speak softly to your soul.
+    </p>
+  </div>
+
+{% if event %}
+  <a href="{% url 'book' event.id %}" class="book-now" tabindex="0">Book Now</a>
+{% else %}
+  <p class="text-danger">Event not available for booking.</p>
+{% endif %}
+ 
+
+<script>
+  const mainImage = document.getElementById('mainImage');
+  const thumbnails = document.querySelectorAll('.thumbnail-row img');
+
+  thumbnails.forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      thumbnails.forEach(img => img.classList.remove('active'));
+      thumb.classList.add('active');
+      mainImage.src = thumb.src.replace('w=400', 'w=900');
+      mainImage.alt = thumb.alt + ' Main Image';
+      mainImage.classList.remove('visible');
+      setTimeout(() => {
+        mainImage.classList.add('visible');
+      }, 50);
+    });
+  });
+</script>
+
+<script>
+  const playBtn = document.getElementById('playPlaylistBtn');
+  const audio = document.getElementById('playlistAudio');
+
+  playBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      playBtn.textContent = '⏸️ Pause Acoustic Playlist';
+    } else {
+      audio.pause();
+      playBtn.textContent = '🎶 Play Acoustic Playlist';
+    }
+  });
+</script>
+
+<script>
+  const video = document.querySelector('.video-section video');
+
+  video.addEventListener('pause', () => {
+    console.log('Video paused');
+  });
+
+  video.addEventListener('play', () => {
+    console.log('Video playing');
+  });
+</script>
+
+</body>
+</html>

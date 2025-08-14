@@ -1,0 +1,94 @@
+/* Sparkly background with animated gradient */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(-45deg, #ff0099, #493240, #00ffae, #00aaff);
+    background-size: 400% 400%;
+    animation: backgroundGlitter 12s ease infinite;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+}
+
+@keyframes backgroundGlitter {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Glitter overlay */
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: url('https://i.gifer.com/7efs.gif'); /* Glitter GIF */
+    background-size: cover;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Container for event details */
+.event-detail-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+}
+
+/* Event title */
+.event-detail-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ffdaff;
+    text-shadow: 0 0 10px #ff4de3, 0 0 20px #ff66c4;
+}
+
+/* Image */
+.event-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border: 3px solid #fff;
+    box-shadow: 0 0 15px #ffffffb7;
+}
+
+/* Event details */
+.event-detail-container p {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    color: #ffe6ff;
+}
+
+/* Back button */
+.back-btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #ff00cc, #3333ff);
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    box-shadow: 0 0 15px #ff66c4;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #ffccff;
+}

@@ -1,0 +1,170 @@
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto+Slab&display=swap');
+
+  /* Background: subtle gradient with soft abstract shapes */
+  body {
+    margin: 0;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    font-family: 'Poppins', sans-serif;
+    color: #eee;
+    padding: 30px 20px;
+    overflow-x: hidden;
+  }
+
+  /* Heading */
+  h1 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #f0e6f6;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    animation: subtleGlow 4s ease-in-out infinite alternate;
+  }
+  @keyframes subtleGlow {
+    from {
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+      color: #f0e6f6;
+    }
+    to {
+      text-shadow: 0 0 18px rgba(255, 255, 255, 0.6);
+      color: #fff;
+    }
+  }
+
+  /* Tagline */
+  .tagline {
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.2rem;
+    color: #b0a8c1;
+    margin-bottom: 40px;
+    letter-spacing: 1.1px;
+    opacity: 0;
+    animation: fadeInUp 1.5s forwards;
+    animation-delay: 0.3s;
+  }
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Gallery Grid */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 28px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* Each gallery item */
+  .gallery a {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #22253b;
+    box-shadow:
+      0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .gallery a:hover {
+    transform: translateY(-8px);
+    box-shadow:
+      0 8px 30px rgba(100, 75, 150, 0.6);
+  }
+
+  /* Image styling */
+  .gallery img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 14px 14px 0 0;
+    user-select: none;
+    pointer-events: none;
+    filter: brightness(0.95);
+    transition: filter 0.4s ease;
+  }
+  .gallery a:hover img {
+    filter: brightness(1);
+  }
+
+  /* Music name below each image */
+  .music-title {
+    padding: 12px 10px 16px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    color: #ccc;
+    user-select: none;
+  }
+
+  /* Fade-in animation for images and text */
+  .gallery a {
+    opacity: 0;
+    animation: fadeSlideUp 0.8s forwards;
+  }
+  .gallery a:nth-child(1) { animation-delay: 0.1s; }
+  .gallery a:nth-child(2) { animation-delay: 0.2s; }
+  .gallery a:nth-child(3) { animation-delay: 0.3s; }
+  .gallery a:nth-child(4) { animation-delay: 0.4s; }
+  .gallery a:nth-child(5) { animation-delay: 0.5s; }
+  .gallery a:nth-child(6) { animation-delay: 0.6s; }
+  .gallery a:nth-child(7) { animation-delay: 0.7s; }
+  .gallery a:nth-child(8) { animation-delay: 0.8s; }
+  .gallery a:nth-child(9) { animation-delay: 0.9s; }
+  .gallery a:nth-child(10) { animation-delay: 1s; }
+
+  @keyframes fadeSlideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
+
+  /* Lightbox styles */
+  #lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 20, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1100;
+  }
+  #lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  #lightbox img {
+    max-width: 90vw;
+    max-height: 85vh;
+    border-radius: 16px;
+    box-shadow:
+      0 0 40px rgba(150, 150, 200, 0.8);
+    user-select: none;
+  }
+
+  /* Accessibility focus glow */
+  .focus-glow {
+    box-shadow:
+      0 0 15px rgba(150, 150, 200, 0.9);
+    outline: none;
+  }

@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Modern Abstraction - Art Detail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+</head>
+<body>
+
+  <h1>Modern Abstraction</h1>
+  
+  <img src="{% static 'images/IMG-20250521-WA0037.jpg' %}" alt="Modern Abstraction Main" class="main-image" id="mainImage" />
+  
+  <div class="thumbnail-row">
+    <img src="{% static 'images/IMG-20250521-WA0038.jpg' %}" alt="Abstract Art 1" class="active" />
+    <img src="{% static 'images/IMG-20250521-WA0042.jpg' %}" alt="Abstract Art 2" />
+    <img src="{% static 'images/IMG-20250521-WA0043.jpg' %}" alt="Abstract Art 3" />
+  </div>
+  
+  <div class="description">
+    <p>
+      Modern Abstraction is an immersive art exhibition exploring contemporary abstract styles across painting, sculpture, and mixed media. It celebrates the bold, the geometric, and the thought-provoking.
+    </p>
+    <p>
+      Witness the evolving language of abstraction through vibrant colors, unusual textures, and spatial experimentation. This exhibition invites art lovers to connect with creativity beyond realism and explore interpretations through intuition and emotion.
+    </p>
+  </div>
+
+  {% if event %}
+    <a href="{% url 'book' event.id %}" class="book-now" tabindex="0">Book Now</a>
+  {% else %}
+    <p class="text-danger">Event not available for booking.</p>
+  {% endif %}
+
+ 
+  <script>
+    const mainImage = document.getElementById('mainImage');
+    const thumbnails = document.querySelectorAll('.thumbnail-row img');
+
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        thumbnails.forEach(img => img.classList.remove('active'));
+        thumb.classList.add('active');
+        mainImage.src = thumb.src.replace('w=400', 'w=900');
+        mainImage.alt = thumb.alt + ' Main Image';
+
+        mainImage.classList.remove('visible');
+        setTimeout(() => {
+          mainImage.classList.add('visible');
+        }, 50);
+      });
+    });
+  </script>
+
+  <script>
+    const playBtn = document.getElementById('playPlaylistBtn');
+    const audio = document.getElementById('playlistAudio');
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playBtn.textContent = '⏸️ Pause Art-Inspired Playlist';
+      } else {
+        audio.pause();
+        playBtn.textContent = '🎨 Play Art-Inspired Playlist';
+      }
+    });
+  </script>
+
+  <script>
+    const video = document.querySelector('.video-section video');
+
+    video.addEventListener('pause', () => {
+      console.log('Video paused');
+    });
+
+    video.addEventListener('play', () => {
+      console.log('Video playing');
+    });
+  </script>
+
+</body>
+</html>

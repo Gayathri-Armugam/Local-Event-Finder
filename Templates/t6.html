@@ -1,0 +1,84 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AR / VR Immersive Experience - Tech Summit Detail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+</head>
+<body>
+
+  <h1>AR / VR Immersive Experience</h1>
+
+  <img src="{% static 'images/IMG-20250521-WA0064.jpg' %}" alt="AR / VR Immersive Experience Main" class="main-image" id="mainImage" />
+
+  <div class="thumbnail-row">
+    <img src="{% static 'images/IMG-20250521-WA0061.jpg' %}"alt="AR / VR Immersive Experience 1" class="active" />
+    <img src="{% static 'images/IMG-20250521-WA0077.jpg' %}" alt="AR / VR Immersive Experience 2" />
+    <img src="{% static 'images/IMG-20250521-WA0063.jpg' %}" alt="AR / VR Immersive Experience 3" />
+  </div>
+
+  <div class="description">
+    <p>
+      Dive into the cutting-edge world of Augmented and Virtual Reality with our immersive tech experience.
+      Explore innovative applications transforming entertainment, education, and industry.
+    </p>
+    <p>
+      Engage with interactive demos showcasing the latest AR and VR hardware and software, designed to transport you to new digital realms.
+      Perfect for tech enthusiasts and professionals eager to experience the future firsthand.
+    </p>
+  </div>
+
+  {% if event %}
+    <a href="{% url 'book' event.id %}" class="book-now" tabindex="0">Book Now</a>
+  {% else %}
+    <p class="text-danger">Event not available for booking.</p>
+  {% endif %}
+
+ 
+
+  <script>
+    const mainImage = document.getElementById('mainImage');
+    const thumbnails = document.querySelectorAll('.thumbnail-row img');
+
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        thumbnails.forEach(img => img.classList.remove('active'));
+        thumb.classList.add('active');
+        mainImage.src = thumb.src.replace('w=400', 'w=900');
+        mainImage.alt = thumb.alt + ' Main Image';
+        mainImage.classList.remove('visible');
+        setTimeout(() => {
+          mainImage.classList.add('visible');
+        }, 50);
+      });
+    });
+
+    const playBtn = document.getElementById('playPlaylistBtn');
+    const audio = document.getElementById('playlistAudio');
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playBtn.textContent = '⏸️ Pause AR / VR Experience Playlist';
+      } else {
+        audio.pause();
+        playBtn.textContent = '🕶️ Play AR / VR Experience Playlist';
+      }
+    });
+
+    const video = document.querySelector('.video-section video');
+    video.addEventListener('pause', () => {
+      console.log('Video paused');
+    });
+    video.addEventListener('play', () => {
+      console.log('Video playing');
+    });
+  </script>
+
+</body>
+</html>

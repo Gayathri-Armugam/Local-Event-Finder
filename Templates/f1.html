@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Street Food Fiesta - Food Event Detail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+</head>
+<body>
+
+  <h1>Street Food Fiesta</h1>
+
+  <img src="{% static 'images/IMG-20250521-WA0047.jpg' %}" alt="Street Food Fiesta Main" class="main-image" id="mainImage" />
+
+  <div class="thumbnail-row">
+    <img src="{% static 'images/IMG-20250521-WA0048.jpg' %}" alt="Street Food 1" class="active" />
+    <img src="{% static 'images/IMG-20250521-WA0049.jpg' %}" alt="Street Food 2" />
+    <img src="{% static 'images/IMG-20250521-WA0051.jpg' %}" alt="Street Food 3" />
+  </div>
+
+  <div class="description">
+    <p>
+      Street Food Fiesta is a vibrant culinary celebration that brings together the best flavors from around the world. From spicy Indian chaat to savory Mexican tacos, this event is a paradise for foodies and flavor seekers alike.
+    </p>
+    <p>
+      Explore rows of colorful stalls, enjoy live cooking demos, and savor authentic dishes that ignite your taste buds. Whether you're a gourmet connoisseur or a casual snacker, the Fiesta promises an unforgettable street food journey.
+    </p>
+  </div>
+
+  {% if event %}
+    <a href="{% url 'book' event.id %}" class="book-now" tabindex="0">Book Now</a>
+  {% else %}
+    <p class="text-danger">Event not available for booking.</p>
+  {% endif %}
+
+ 
+
+  <script>
+    const mainImage = document.getElementById('mainImage');
+    const thumbnails = document.querySelectorAll('.thumbnail-row img');
+
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        thumbnails.forEach(img => img.classList.remove('active'));
+        thumb.classList.add('active');
+        mainImage.src = thumb.src.replace('w=400', 'w=900');
+        mainImage.alt = thumb.alt + ' Main Image';
+        mainImage.classList.remove('visible');
+        setTimeout(() => {
+          mainImage.classList.add('visible');
+        }, 50);
+      });
+    });
+
+    const playBtn = document.getElementById('playPlaylistBtn');
+    const audio = document.getElementById('playlistAudio');
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playBtn.textContent = '⏸️ Pause Street Food Playlist';
+      } else {
+        audio.pause();
+        playBtn.textContent = '🍴 Play Street Food Playlist';
+      }
+    });
+
+    const video = document.querySelector('.video-section video');
+    video.addEventListener('pause', () => {
+      console.log('Video paused');
+    });
+    video.addEventListener('play', () => {
+      console.log('Video playing');
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tech Summit Gallery</title>
+  <link rel="stylesheet" href="{% static 'css/allevent.css' %}">
+</head>
+<body>
+
+<h1>Tech Summit Gallery</h1>
+<div class="tagline">Innovating tomorrow, one breakthrough at a time.</div>
+
+<div class="gallery">
+  <a href="{% url 't1' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0057.jpg' %}" alt="AI Panel" />
+    <div class="desc">AI & Machine Learning Panel</div>
+  </a>
+  
+  <a href="{% url 't2' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0058.jpg' %}" alt="Hackathon" />
+    <div class="desc">24-Hour Hackathon Challenge</div>
+  </a>
+
+  <a href="{% url 't3' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0066.jpg' %}" alt="Data Visualization Workshop" />
+    <div class="desc">Data Visualization Workshop</div>
+  </a>
+
+  <a href="{% url 't4' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0063.jpg' %}" alt="Tech Talk Stage" />
+    <div class="desc">Innovators' Tech Talk Stage</div>
+  </a>
+
+  <a href="{% url 't5' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0058.jpg' %}" alt="Cybersecurity Live Demo" />
+    <div class="desc">Cybersecurity Live Demo</div>
+  </a>
+
+  <a href="{% url 't6' %}" tabindex="0">
+    <img src="{% static 'images/IMG-20250521-WA0077.jpg' %}" alt="AR/VR Zone" />
+    <div class="desc">AR / VR Immersive Experience</div>
+  </a>
+</div>
+
+</body>
+</html>

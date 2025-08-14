@@ -1,0 +1,146 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Booking History | Local Event Finder</title>
+  <link rel="stylesheet" href="{% static 'css/bookinghistory.css' %}" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ff00cc, #3333ff);
+      background-repeat: no-repeat ;
+      margin: 0;
+      padding: 40px 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2c3e50;
+      font-weight: 700;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 15px 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background:  #3333ff;
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    tr:hover {
+      background-color: #ffeef2;
+    }
+
+    .no-bookings {
+      text-align: center;
+      padding: 40px 0;
+      font-size: 18px;
+      color: #777;
+    }
+
+    .status {
+      padding: 5px 12px;
+      border-radius: 20px;
+      color: white;
+      font-weight: 600;
+      font-size: 13px;
+      display: inline-block;
+    }
+
+    .status.confirmed {
+      background-color: #28a745;
+    }
+
+    .status.pending {
+      background-color: #ffc107;
+      color: #444;
+    }
+
+    .status.cancelled {
+      background: linear-gradient(135deg, #ff00cc, #3333ff);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      th, td {
+        padding: 12px 8px;
+      }
+      .container {
+        padding: 20px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>My Booking History</h1>
+
+    {% if bookings %}
+    <table>
+      <thead>
+        <tr>
+          <th>Booking Date</th>
+          <th>Event</th>
+          <th>Seats</th>
+          <th>Package</th>
+          <th>Total Paid (₹)</th>
+          <th>Payment Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for booking in bookings %}
+        <tr>
+          <td>{{ booking.booking_date|date:"M d, Y" }}</td>
+          <td>{{ booking.event.title }}</td>
+          <td>{{ booking.seat_count }}</td>
+          <td>{{ booking.package }}</td>
+          <td>{{ booking.total_price }}</td>
+          <td>
+            {% if booking.payment_status %}
+              Paid
+            {% else %}
+              Success
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="no-bookings">You have no booking history yet.</p>
+    {% endif %}
+
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="{% url 'upcoming_events' %}" 
+         style="display: inline-block;       background: linear-gradient(135deg, #ff00cc, #3333ff);
+ color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 16px;">
+        Go to Upcoming Events
+      </a>
+    </div>
+  </div>
+</body>
+</html>

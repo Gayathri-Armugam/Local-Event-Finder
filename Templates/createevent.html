@@ -1,0 +1,276 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <link rel="stylesheet" href="{% static 'css/createev.css' %}">
+</head>
+<style>
+    /* Reset some default browser styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+/* Navbar with glitter gradient */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(45deg, #ff00ff, #ff4500, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
+    background-size: 400% 400%;
+    animation: glowingBackground 8s infinite linear;
+    padding: 1rem 2rem;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 80px;
+    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.8);
+    border-bottom: 3px solid rgba(255, 215, 0, 0.8);
+}
+
+@keyframes glowingBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.navbar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://i.gifer.com/7efs.gif');
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Body padding to compensate for fixed navbar */
+body {
+    padding-top: 80px;
+    font-family: Arial, sans-serif;
+    position: relative;
+    min-height: 100vh;
+    color: #333;
+    background: linear-gradient(135deg, #00a8e8, #ff0095);
+    background-size: 400% 400%;
+    animation: glitterGradient 10s ease infinite;
+}
+
+@keyframes glitterGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+
+/* Logo & Branding */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    color: rgb(187, 19, 19);
+    height: 50px;
+}
+
+.logo-img {
+    width: 190px;
+    height: 170px;
+    margin-right: 50px;
+}
+
+.navbar-logo h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Navigation links */
+.navbar-links {
+    display: flex;
+    padding: 20px 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 40px;
+    text-shadow: 0px 0px 5px rgb(10, 10, 10), 0px 0px 10px #080708;
+}
+
+.navbar-links a:hover {
+    color: yellow;
+    text-shadow: 0px 0px 10px #ffff00, 0px 0px 20px #ff4500;
+    transform: scale(1.1);
+}
+/* Container Styling */
+.form-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px 40px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Heading */
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  color: #333;
+}
+
+/* Form Fields */
+.form-container form p {
+  margin-bottom: 20px;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #444;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="file"],
+.form-container input[type="date"],
+.form-container input[type="time"],
+.form-container textarea,
+.form-container select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: #f9f9f9;
+  transition: border 0.3s ease;
+}
+
+.form-container input:focus,
+.form-container textarea:focus,
+.form-container select:focus {
+  border-color: #3b82f6;
+  outline: none;
+  background-color: #fff;
+}
+
+/* Submit Button */
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background: linear-gradient(135deg, #ff00cc, #3333ff);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #2563eb;
+}
+
+   
+
+</style>
+<body>
+    <!-- Header and Navbar -->
+    <header class="navbar">
+        <div class="navbar-logo">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo-img">
+            <h1>Local Event Finder</h1>
+        </div>
+        <nav class="navbar-links">
+            <a href="{% url 'index' %}" class="nav-link active">Home</a>
+            <a href="{% url 'about' %}" class="nav-link">About Us</a>
+             <a href="{% url 'upcoming_events' %}" class="nav-link">Upcoming Events</a>
+            <a href="{% url 'gallery' %}" class="nav-link">Gallery</a>
+            {% if user.is_authenticated and user.role == 'organizer' %}
+            <a href="{% url 'createevent' %}" class="nav-link">Create Event</a>
+        {% endif %}
+                    <a href="{% url 'profile' %}" class="nav-link">Profile</a>
+        </nav>
+    </header>
+{% if messages %}
+  <div style="max-width: 600px; margin: 30px auto;">
+    {% for message in messages %}
+      {% if message.tags == 'error' %}
+        <div style="
+          padding: 15px 20px;
+          margin-bottom: 15px;
+          border-radius: 8px;
+          font-weight: 600;
+          color: #b91c1c;
+          background-color: #fee2e2;
+          border: 1px solid #fca5a5;
+          box-shadow: 0px 4px 12px rgba(0,0,0,0.05);
+          text-align: center;
+        ">
+          {{ message }}
+        </div>
+      {% else %}
+        <div style="
+          padding: 15px 20px;
+          margin-bottom: 15px;
+          border-radius: 8px;
+          font-weight: 600;
+          color: #065f46;
+          background-color: #d1fae5;
+          border: 1px solid #6ee7b7;
+          box-shadow: 0px 4px 12px rgba(0,0,0,0.05);
+          text-align: center;
+        ">
+          {{ message }}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}
+
+
+    <div class="form-container">
+  <h2>Create New Event</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="submit-btn">Create Event</button>
+  </form>
+</div>
+
+
+    <script src="{% static 'js/createevent.js' %}"></script>
+</body>
+</html>

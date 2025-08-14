@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile - Around You</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+<body>
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-success">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <!-- Header and Navbar -->
+    <header class="navbar">
+        <div class="navbar-logo">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo-img">
+            <h1>Local Event Finder</h1>
+        </div>
+        <nav class="navbar-links">
+            <a href="{% url 'index' %}" class="nav-link active">Home</a>
+            <a href="{% url 'about' %}" class="nav-link">About Us</a>
+            <a href="{% url 'upcoming_events' %}" class="nav-link">Upcoming Events</a>
+            <a href="{% url 'gallery' %}" class="nav-link">Gallery</a>
+            {% if user.is_authenticated and user.role == 'organizer' %}
+                <a href="{% url 'createevent' %}" class="nav-link">Create Event</a>
+            {% endif %}
+            <a href="{% url 'profile' %}" class="nav-link">Profile</a>
+        </nav>
+    </header>
+
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="profile-left">
+                {% if user.profile_picture %}
+                    <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="profile-img">
+                {% else %}
+                    <img src="{% static 'images/default_profile.png' %}" alt="Default Profile Picture" class="profile-img">
+                {% endif %}
+                <h2 class="username">{{ user.username }}</h2>
+                <p class="role">{{ user.role|title }}</p>
+            </div>
+
+            <div class="profile-right">
+                <div class="info-group">
+                    <label>Full Name:</label>
+                    <p>{{ user.get_full_name|default:user.username }}</p>
+                </div>
+                <div class="info-group">
+                    <label>Email:</label>
+                    <p>{{ user.email }}</p>
+                </div>
+                <div class="info-group">
+                    <label>Phone:</label>
+                    <p>{% if user.phone_number %}{{ user.phone_number }}{% else %}Not provided{% endif %}</p>
+                </div>
+                <div class="info-group">
+                    <label>Role:</label>
+                    <p>{{ user.role|title }}</p>
+                </div>
+
+                <div class="profile-actions">
+                    <a href="{% url 'editprofile' %}" class="btn">Edit Profile</a>
+                    <a href="{% url 'changepassword' %}" class="btn">Change Password</a>
+                    <a href="{% url 'logout' %}" class="btn logout">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Organizer or Attendee Sections -->
+              
+        <div class="event-section">
+            <h3>Quick Access</h3>
+            <div class="event-links">
+                <a href="{% url 'bookinghistory' %}" class="btn link-btn">Booking History</a>
+                  {% if user.role == 'organizer' %}
+                    <a href="{% url 'createevent' %}" class="btn link-btn">Create an Event</a>
+                {% endif %}
+            </div>
+        </div>
+
+      
+        
+    </div>
+
+</body>
+</html>
